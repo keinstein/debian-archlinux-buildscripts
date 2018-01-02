@@ -1,0 +1,2 @@
+pacman-create-mingw-deb /usr/bin
+pacman-download-pkg     /usr/bin
