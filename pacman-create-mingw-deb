@@ -1,0 +1,42 @@
+#!/bin/bash
+me=$0
+oldpwd=$PWD
+packagename=$1
+fullpackagename=mingw-w64-$packagename
+tarname=$fullpackagename.tar.gz
+makeargs="-o"
+	
+
+workdir=`mktemp -d`
+
+echo "Downloading to $workdir"
+(
+    cd $workdir
+    wget https://aur.archlinux.org/cgit/aur.git/snapshot/$tarname
+
+    tar xvpf $tarname
+    cd $fullpackagename
+
+    /usr/bin/pacman-download-pkg $makeargs || exit 1
+)
+
+exit 0
+
+dirname=`find $workdir/$fullpackagename/src -type d -maxdepth 1`
+mv dirname $fullpackagename
+cd "$fullpackagename"
+git init
+git add -A
+git commit -m "intial commit"
+git branch upstream
+git dpm init
+git dpm checkout-patched 
+find $workdir/$fullpackagename/src -type f -maxdepth 1 -name \*.patch| \
+    while read d;
+    do
+	patch -p 0 <"$d"
+	git add -A
+	git commit -m "Applying $d"
+    done
+
+	
