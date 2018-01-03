@@ -20,6 +20,7 @@ echo "Downloading to $workdir"
     /usr/bin/pacman-download-pkg $makeargs || exit 1
 )
 
+echo "The package data has been collected in $workdir"
 exit 0
 
 dirname=`find $workdir/$fullpackagename/src -type d -maxdepth 1`
@@ -38,5 +39,3 @@ find $workdir/$fullpackagename/src -type f -maxdepth 1 -name \*.patch| \
 	git add -A
 	git commit -m "Applying $d"
     done
-
-	
