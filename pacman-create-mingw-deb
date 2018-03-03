@@ -7,7 +7,7 @@ tarname=$fullpackagename.tar.gz
 makeargs="-o"
 	
 
-workdir=`mktemp -d`
+workdir=`mktemp -d "pacman-$packagename.XXXXXX"`
 
 echo "Downloading to $workdir"
 (
@@ -17,7 +17,7 @@ echo "Downloading to $workdir"
     tar xvpf $tarname
     cd $fullpackagename
 
-    /usr/bin/pacman-download-pkg $makeargs || exit 1
+    /usr/bin/pacman-download-pkg $makeargs
 )
 
 echo "The package data has been collected in $workdir"
