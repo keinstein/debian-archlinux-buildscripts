@@ -1,5 +1,5 @@
 .\"                                      Hey, EMACS: -*- nroff -*-
-.\" (C) Copyright 2018 Tobias Schlemmer <tobias@tobias5>,
+.\" (C) Copyright 2018 Tobias Schlemmer <keinstein@users.sourceforge.net>,
 .\"
 .\" First parameter, NAME, should be all caps
 .\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
